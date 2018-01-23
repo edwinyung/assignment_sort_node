@@ -2,14 +2,17 @@ function mergeSort(arr) {
   let midpoint = Math.floor(arr.length / 2);
   let leftHalf = arr.slice(0, midpoint);
   let rightHalf = arr.slice(midpoint);
-  if (arr.length > 1) {
-    mergeSort(leftHalf);
-    mergeSort(rightHalf);
-    console.log(leftHalf);
-    console.log(rightHalf);
+  if (arr.length <= 1) {
+    return arr;
   }
-  return merge(leftHalf, rightHalf);
+  // mergeSort(leftHalf); //[1,3]
+  // mergeSort(rightHalf); //[7,2,5]
+  console.log(leftHalf);
+  console.log(rightHalf);
+  return merge(mergeSort(leftHalf), mergeSort(rightHalf));
 }
+
+//[1,3] [7,2,5]
 
 //[1] [3] [2] [5] [7]
 //[1 3] [7 2 5]
@@ -30,8 +33,25 @@ function merge(leftHalf, rightHalf) {
     }
   }
 
+  while (leftIndex < leftHalf.length) {
+    sortedArr.push(leftHalf[leftIndex]);
+    leftIndex++;
+  }
+
+  while (rightIndex < rightHalf.length) {
+    sortedArr.push(rightHalf[rightIndex]);
+    rightIndex++;
+  }
+
+  console.log("sortedArr: ", sortedArr);
   return sortedArr;
 }
+
+//[7] [2] [5]
+//[7] [2]
+//[2,7] [5] === [2,7,5]
+//[2,5,7]
+//console.log(merge([1, 3, 5], [4, 6, 8]));
 
 console.log(mergeSort([1, 3, 7, 2, 5]));
 // [1,2,3,5,7]
