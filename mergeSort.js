@@ -22,6 +22,8 @@ function merge(leftHalf, rightHalf) {
   let leftIndex = 0;
   let rightIndex = 0;
   let sortedArr = [];
+
+  //zip back up and combine the fragmented elements
   while (leftIndex < leftHalf.length && rightIndex < rightHalf.length) {
     if (leftHalf[leftIndex] < rightHalf[rightIndex]) {
       sortedArr.push(leftHalf[leftIndex]);
@@ -33,6 +35,7 @@ function merge(leftHalf, rightHalf) {
     }
   }
 
+  //take care of leftovers from either the left or right
   while (leftIndex < leftHalf.length) {
     sortedArr.push(leftHalf[leftIndex]);
     leftIndex++;
@@ -46,6 +49,24 @@ function merge(leftHalf, rightHalf) {
   console.log("sortedArr: ", sortedArr);
   return sortedArr;
 }
+
+const mergeClean = (left, right) => {
+  const newArr = [];
+  const lLen = left.length;
+  const rLen = right.length;
+  let l = 0;
+  let r = 0;
+
+  while (l < lLen && r < rLen) {
+    if (left[l] < right[r]) {
+      newArr.push(left[l++]);
+    } else {
+      newArr.push(right[r++]);
+    }
+  }
+
+  return newArr.concat(left.slice(l)).concat(right.slice(r));
+};
 
 //[7] [2] [5]
 //[7] [2]

@@ -1,0 +1,57 @@
+Functional Requirements
+
+1. Users should be able to upload/download/view photos.
+2. Users can perform searches based on photo titles.
+3. Users can follow other users.
+4. The system should be able to generate and display a user’s 
+   timeline consisting of top (most recent) photos from all the people the user follows.
+
+//Mockup
+
+//Database Modeling and Schema
+//Join table between Users and Photos
+//Or, a foreign key in Photos: (1:Many)
+//User Table: ID...PhotoIDs, Demographic Information 
+//Users are followers and following (Many: Many)
+//User Table: Following: rows of IDs, Followers: rows of IDs
+//Photo Table
+//Followers and Following are a Many: Many Relationship, so we need a join table
+
+//Follow - FollowerID, FollowingID
+
+User Table
+User Id | Name
+1         Vik
+2         Edwin
+
+Following Table
+ID, FK -> UserID of User Table, FollowersID
+    1      2
+<!-- 
+
+JoinUserToFollowing Table
+FollowersID | User Id  
+2            1          
+ -->
+//NoSQL
+//User Model: ID, Name, Email, Password, Following: [type: User Model], Followers:[type: User Model], Photos: [type: Photo Model], Timestamps
+//Photo Model: ID, Title, Graphic URL/AWS/static_link, User: string (Photo has association with User Model with Photos), Timestamps
+
+//User Model: {
+ID
+...
+Following: []
+Followers:[]
+Photos: [
+ID
+Title
+...
+]
+
+}
+
+//Server
+
+//Set up initial server
+//ORM to query the noSQL database
+

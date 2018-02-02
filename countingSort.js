@@ -8,7 +8,7 @@ function countingSort(arr, base = 10) {
 
   Object.keys(buckets).forEach(function(key) {
     for (let k = 1; k <= buckets[key]; k++) {
-      outputArr.push(key);
+      outputArr.push(Number(key));
     }
   });
 
