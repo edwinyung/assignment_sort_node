@@ -32,11 +32,28 @@ let sieve = function(num) {
   return output;
 };
 
-let reversiblePrime = function(input) {
-  let primes = sieve(input);
-  primes.filter(prime => {
-    for (let i = 0; i < prime.length; i++) {
-      if (prime[i] === p[i - 1]) return prime;
+// let reversiblePrime = function(input) {
+//   let primes = sieve(input);
+//   primes.filter(prime => {
+//     for (let i = 0; i < prime.length; i++) {
+//       if (prime[i] === p[i - 1]) return prime;
+//     }
+//   });
+// };
+
+function getPrimes(max) {
+  var sieve = [],
+    i,
+    j,
+    primes = [];
+  for (i = 2; i <= max; ++i) {
+    if (!sieve[i]) {
+      // i has not been marked -- it is prime
+      primes.push(i);
+      for (j = i << 1; j <= max; j += i) {
+        sieve[j] = true;
+      }
     }
-  });
-};
+  }
+  return primes;
+}
